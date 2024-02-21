@@ -141,32 +141,6 @@ class _Screen3State extends State<Screen3> {
       // Capture photo
       final picture = await _controller.takePicture();
 
-      // Crop photo
-      final _croppedFile = await ImageCropper().cropImage(
-        sourcePath: picture.data,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ],
-        uiSettings: [
-          AndroidUiSettings(
-              toolbarTitle: 'Cropper',
-              toolbarColor: Colors.deepOrange,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
-          IOSUiSettings(
-            title: 'Cropper',
-          ),
-          WebUiSettings(
-            context: context,
-          ),
-        ],
-      );
-
       int userPhotoId = savedImages.length + 1;
       final ImageModel savedImage = ImageModel(
         id: userPhotoId,
@@ -324,31 +298,13 @@ class _Screen3State extends State<Screen3> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(20)),
                                       child: AspectRatio(
-                                          aspectRatio: 10.0 / 7.5, //5/4
-                                          // aspectRatio: _previewSize!.width /_previewSize!.height,
-                                          child: Stack(
-                                            children: <Widget>[
-                                              Camera(
-                                                controller: _controller,
-                                                placeholder: (_) =>
-                                                    const SizedBox(),
-                                              ),
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                    left: 320, top: 120),
-                                                width: 200.0,
-                                                height: 180.0,
-                                                decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    color: Colors.red,
-                                                    width: 3.0,
-                                                  ),
-                                                  color: Colors
-                                                      .transparent, // Transparent background
-                                                ),
-                                              ),
-                                            ],
-                                          )),
+                                        aspectRatio: 10.0 / 7.5, //5/4
+                                        // aspectRatio: _previewSize!.width /_previewSize!.height,
+                                        child: Camera(
+                                          controller: _controller,
+                                          placeholder: (_) => const SizedBox(),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
