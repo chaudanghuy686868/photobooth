@@ -15,6 +15,7 @@ import 'dart:html' as html;
 class Screen7 extends StatefulWidget {
   // AI Image
   Uint8List imgUrl;
+  //String imgUrl;
   String imgUrlTarget;
   Screen7({required this.imgUrl, required this.imgUrlTarget});
 
@@ -24,6 +25,7 @@ class Screen7 extends StatefulWidget {
 
 class _Screen7State extends State<Screen7> {
   // TODO: Upload to API and get the image link here
+  //late String imgUrl = '';
   late String imgUrlTest = '';
   final ApiService apiService = new ApiService();
 
@@ -49,6 +51,13 @@ class _Screen7State extends State<Screen7> {
   }
 
   Future<void> _uploadImage() async {
+    Random random = new Random();
+    const availableChars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    final randomString = List.generate(
+            6, (index) => availableChars[random.nextInt(availableChars.length)])
+        .join();
+
     try {
       var request = http.MultipartRequest(
           'POST', Uri.parse('http://128.199.205.168/api/upload/'));
@@ -56,7 +65,7 @@ class _Screen7State extends State<Screen7> {
       request.files.add(
         //await http.MultipartFile.fromPath('file', widget.imgUrl),
         await http.MultipartFile.fromBytes('file', widget.imgUrl,
-            filename: "photo_result.jpg"),
+            filename: "${randomString}_photo_result.jpg"),
       );
       //print('Bat dua upload 2222 ');
       final response = await request.send();
@@ -127,6 +136,10 @@ class _Screen7State extends State<Screen7> {
       widget.imgUrl,
     );
 
+    // Image imageSnap = Image.network(
+    //   widget.imgUrl,
+    // );
+
     Image imageSnapTarget = Image.network(
       widget.imgUrlTarget,
       width: 490.0,
@@ -163,13 +176,9 @@ class _Screen7State extends State<Screen7> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/template/text_screen7.png',
-/*
-                        width: 300,
-                        height: 100,
-*/
-                        width: 800,
-                        height: 300,
+                        'assets/template/text-screen7.png',
+                        width: 750,
+                        height: 250,
                       )
                     ],
                   ),
@@ -198,8 +207,8 @@ class _Screen7State extends State<Screen7> {
                                 margin: const EdgeInsets.only(
                                   top: 60.0,
                                 ),
-                                width: 590.0,
-                                height: 560.0,
+                                width: 580.0,
+                                height: 510.0,
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     color: Colors.white,
@@ -211,7 +220,6 @@ class _Screen7State extends State<Screen7> {
                                         .image, // Add your foreground image path
 
                                     //image: Image.memory(base64Decode(strbase64)).image,
-
                                     //image: AssetImage(widget.imgUrlTarget),
                                     fit: BoxFit.fill,
                                   ),
@@ -246,8 +254,8 @@ class _Screen7State extends State<Screen7> {
                                 margin: const EdgeInsets.only(
                                   top: 60.0,
                                 ),
-                                width: 590.0,
-                                height: 560.0,
+                                width: 580.0,
+                                height: 510.0,
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     color: Colors.white,
@@ -257,9 +265,6 @@ class _Screen7State extends State<Screen7> {
                                   image: DecorationImage(
                                     image: imageSnap
                                         .image, // Add your foreground image path
-/*
-                                    image: new FileImage(File(widget.imgUrl),), // Add your foreground image path
-*/
                                     //image: AssetImage(widget.imgUrl),
                                     fit: BoxFit.fill,
                                   ),
@@ -304,8 +309,8 @@ class _Screen7State extends State<Screen7> {
                       ),
                        */
                       Container(
-                        width: 290.0,
-                        height: 380.0,
+                        width: 250.0,
+                        height: 320.0,
                         margin: EdgeInsets.only(
                           left: 850,
                           top: 20,
@@ -329,7 +334,7 @@ class _Screen7State extends State<Screen7> {
                             margin: EdgeInsets.only(
                               // left: 20,
                               // right: 20,
-                              top: 80,
+                              top: 60,
                               // bottom: 20,
                             ),
                             child: ClipRRect(
@@ -359,31 +364,50 @@ class _Screen7State extends State<Screen7> {
         ),
         floatingActionButton: Align(
           alignment: Alignment(-0.9, 1),
-          child: Container(
-            height: 100,
-            width: 250,
-            child: FloatingActionButton.extended(
-              backgroundColor: Colors.green,
-              foregroundColor: Colors.black,
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Screen1()),
-                );
-              },
-              icon: Icon(Icons.arrow_back_sharp),
-              label: Text(
-                '재시작',
-/*
-              label: Text('재시작',
-*/
-                style: TextStyle(
-                  fontSize: 60,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Screen1()),
+              );
+            },
+            child: Container(
+              height: 100,
+              width: 250,
+              /*
+              child: FloatingActionButton.extended(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.pink,
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Screen1()),
+                  );
+                },
+                icon: Icon(Icons.arrow_back_sharp),
+                label: Text(
+                  '재시작',
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontFamily: 'Gowun',
+                  ),
+                ),
+              ),
+
+               */
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(8.0),
+                image: DecorationImage(
+                  image: AssetImage("assets/template/back-button.png"),
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
           ),
+
         ),
       ),
     );

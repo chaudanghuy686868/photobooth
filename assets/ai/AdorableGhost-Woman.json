@@ -1,46 +1,47 @@
 {
-    "prompt": "Highly detailed (Dan Mumford:1.2) portrait of a adorable ghost woman with round, opaque colorama colored rainbow rgb skin color, expressive eyes and a scary smile, (fantastic amazing decoration:1.2), abstract beauty, explosive volumetric, Perfect anatomy, (best quality, 500px, 64k ultra hd:1.1). (A perfect finished work of official art:1.1). Digital painting (ART By Apterus, ART By Dan Mumford, Anime Style:1.1)",
-    "negative_prompt": "nsfw, (ugly face:1.3), (blurred face:1.3), disfigured, lowres, poorly drawn, sloppy, over exposed, burnt image, sloppy, broken, fuzzy, aliasing, cheap, oldschool, poor quality, pixelated, sleepy, closed-eyes, (two head:1.3), (matte color:1.1),  bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, illustration by bad-artist, 3d, render, doll, plastic, monochrome,  bad-artist bad_prompt EasyNegative, bug eyes, bad eyes, error eyes",
-    "seed": -1,
-    "sampler_name": "DDIM",
-    "batch_size": 1,
-    "steps": 50,
-    "cfg_scale": 7,
-    "width": 525,
-    "height": 512,
-    "override_settings": {
-        "sd_model_checkpoint": "jimTERUMODE_version10.ckpt",
-        "sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
-    },
-    "override_settings_restore_afterwards": true,
-    "sampler_index": "DDIM",
-    "script_args": [],
-    "send_images": true,
-    "save_images": true,
-    "alwayson_scripts": {
-        "ControlNet": {
-            "args": [{
-                    "control_mode": "Balanced",
-                    "enabled": true,
-                    "guidance_end": 1,
-                    "guidance_start": 0,
-                    "input_image": "",
-                    "input_mode": "simple",
-                    "is_ui": true,
-                    "loopback": false,
-                    "low_vram": false,
-                    "model": "control_v11p_sd15_lineart [43d4be0d]",
-                    "module": "lineart_standard (from white bg & black line)",
-                    "output_dir": "",
-                    "pixel_perfect": true,
-                    "processor_res": 512,
-                    "resize_mode": "Crop and Resize",
-                    "threshold_a": -1,
-                    "threshold_b": -1,
-                    "weight": 1.5
-                }
-
-            ]
-        }
-    }
+              "prompt": "Highly detailed (Dan Mumford:1.2) portrait of a adorable ghost girl with round, girl, little girl, children, opaque colorama colored rainbow rgb skin color, expressive eyes and a scary smile, (fantastic amazing decoration:1.2), abstract beauty, explosive volumetric, Perfect anatomy, (best quality, 500px, 64k ultra hd:1.1). (A perfect finished work of official art:1.1). Digital painting (ART By Apterus, ART By Dan Mumford, Anime Style:1.1)",
+              "negative_prompt": "nsfw, (ugly face:1.3), (blurred face:1.3), disfigured, lowres, poorly drawn, sloppy, over exposed, burnt image, sloppy, broken, fuzzy, aliasing, cheap, oldschool, poor quality, pixelated, sleepy, closed-eyes, (two head:1.3), (matte color:1.1),  bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name, illustration by bad-artist, 3d, render, doll, plastic, monochrome,  bad-artist bad_prompt EasyNegative, bug eyes, bad eyes, error eyes",
+              "seed": -1,
+              "sampler_name": "DDIM",
+              "batch_size": 1,
+              "steps": 50,
+              "cfg_scale": 7,
+              "width": 640,
+              "height": 628,
+              "override_settings": {
+                "sd_model_checkpoint": "jimTERUMODE_version10.ckpt",
+				"sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
+              },
+              "override_settings_restore_afterwards": true,
+              "sampler_index": "DDIM",
+              "script_args": [],
+              "send_images": true,
+              "save_images": true,
+              "alwayson_scripts": {
+                  "ControlNet":{
+                        "args":[
+                                {
+                                      "control_mode":"Balanced",  
+                                      "enabled":true,
+                                      "guidance_end":1,
+                                      "guidance_start":0,
+                                      "input_image": "",
+                                      "input_mode":"simple",
+                                      "is_ui":true,
+                                      "loopback":false,
+                                      "low_vram":false,
+                                      "model":"control_v11p_sd15_lineart [43d4be0d]",
+                                      "module":"lineart_standard (from white bg & black line)",
+                                      "output_dir":"",
+                                      "pixel_perfect":true,
+                                      "processor_res":512,
+                                      "resize_mode":"Crop and Resize",
+                                      "threshold_a":-1,
+                                      "threshold_b":-1,
+                                      "weight":1.5
+                                }
+                            
+                        ]
+                    }
+              }
 }

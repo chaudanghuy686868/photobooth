@@ -48,7 +48,7 @@ dependencies:
   video_player: ^2.8.1
   image_gallery_saver: ^2.0.3
   permission_handler: ^11.0.1
-  image_cropper: ^5.0.0
+  image_cropper: ^5.0.1
   video_player_win: ^2.3.4
   camera:
     path: packages/camera/camera  

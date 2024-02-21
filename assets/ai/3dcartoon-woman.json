@@ -1,46 +1,46 @@
 {
-    "prompt": "(playful, cartoon, woman, outdoor, 3d rendering), (best quality, 4k, 8k, highres, masterpiece:1.2), ultra-detailed, (realistic, photorealistic, photo-realistic:1.37), vivid colors, vibrant atmosphere, dynamic pose, playful interaction, sunny day, lush greenery, vibrant flowers, creative outfit, whimsical elements, professional 3D rendering, imaginative scenery, charming environment, captivating background, expressive eyes, soft lighting",
-    "negative_prompt": "nsfw, blurry, (ugly face:0.8),cross-eyed,sketches, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, bad anatomy, DeepNegative, facing away, tilted head, {Multiple people}, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worstquality, low quality, normal quality, jpegartifacts, signature, watermark, username, blurry, bad feet, cropped, poorly drawn hands, poorly drawn face, mutation, deformed, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, extra fingers, fewer digits, extra limbs, extra arms,extra legs, malformed limbs, fused fingers, too many fingers, long neck, cross-eyed,mutated hands, polar lowres, bad body, bad proportions, gross proportions, text, error, missing fingers, missing arms, missing legs, extra digit, extra arms, extra leg, extra foot, ((repeating hair)),  bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
-    "seed": -1,
-    "sampler_name": "Euler a",
-    "batch_size": 1,
-    "steps": 20,
-    "cfg_scale": 9,
-    "width": 525,
-    "height": 512,
-    "override_settings": {
-        "sd_model_checkpoint": "3dCartoonVision_v10.safetensors",
-        "sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
-    },
-    "override_settings_restore_afterwards": true,
-    "sampler_index": "Euler a",
-    "script_args": [],
-    "send_images": true,
-    "save_images": true,
-    "alwayson_scripts": {
-        "ControlNet": {
-            "args": [{
-                    "control_mode": "Balanced",
-                    "enabled": true,
-                    "guidance_end": 1,
-                    "guidance_start": 0,
-                    "input_image": "",
-                    "input_mode": "simple",
-                    "is_ui": true,
-                    "loopback": false,
-                    "low_vram": false,
-                    "model": "control_v11p_sd15_lineart [43d4be0d]",
-                    "module": "lineart_standard (from white bg & black line)",
-                    "output_dir": "",
-                    "pixel_perfect": true,
-                    "processor_res": 512,
-                    "resize_mode": "Crop and Resize",
-                    "threshold_a": -1,
-                    "threshold_b": -1,
-                    "weight": 1
-                }
-
-            ]
+  "prompt": "(playful, cartoon, girl, children, young, little girl children, outdoor, 3d rendering), (best quality, 4k, 8k, highres, masterpiece:1.2), ultra-detailed, (realistic, photorealistic, photo-realistic:1.37), vivid colors, vibrant atmosphere, dynamic pose, playful interaction, sunny day, lush greenery, vibrant flowers, creative outfit, whimsical elements, professional 3D rendering, imaginative scenery, charming environment, captivating background, expressive eyes, soft lighting",
+  "negative_prompt": "nsfw, blurry, (ugly face:0.8),cross-eyed,sketches, (worst quality:2), (low quality:2), (normal quality:2), lowres, normal quality, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, bad anatomy, DeepNegative, facing away, tilted head, {Multiple people}, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worstquality, low quality, normal quality, jpegartifacts, signature, watermark, username, blurry, bad feet, cropped, poorly drawn hands, poorly drawn face, mutation, deformed, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, extra fingers, fewer digits, extra limbs, extra arms,extra legs, malformed limbs, fused fingers, too many fingers, long neck, cross-eyed,mutated hands, polar lowres, bad body, bad proportions, gross proportions, text, error, missing fingers, missing arms, missing legs, extra digit, extra arms, extra leg, extra foot, ((repeating hair)),  bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
+  "seed": -1,
+  "sampler_name": "Euler a",
+  "batch_size": 1,
+  "steps": 20,
+  "cfg_scale": 9,
+  "width": 640,
+  "height": 628,
+  "override_settings": {
+    "sd_model_checkpoint": "3dCartoonVision_v10.safetensors",
+    "sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
+  },
+  "override_settings_restore_afterwards": true,
+  "sampler_index": "Euler a",
+  "script_args": [],
+  "send_images": true,
+  "save_images": true,
+  "alwayson_scripts": {
+    "ControlNet": {
+      "args": [
+        {
+          "control_mode": "Balanced",
+          "enabled": true,
+          "guidance_end": 1,
+          "guidance_start": 0,
+          "input_image": "",
+          "input_mode": "simple",
+          "is_ui": true,
+          "loopback": false,
+          "low_vram": false,
+          "model": "control_v11p_sd15_lineart [43d4be0d]",
+          "module": "lineart_standard (from white bg & black line)",
+          "output_dir": "",
+          "pixel_perfect": true,
+          "processor_res": 512,
+          "resize_mode": "Crop and Resize",
+          "threshold_a": -1,
+          "threshold_b": -1,
+          "weight": 1
         }
+      ]
     }
+  }
 }

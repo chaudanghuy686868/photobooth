@@ -1,45 +1,46 @@
 {
-    "prompt": "(((best quality, high quality, highres))), 1man, handsome, young, celebrity, angular face, simple background, white background",
-    "negative_prompt": "nsfw, poorly_drawn, blurry, cropped, worst quality, normal quality, low quality, jpeg artifacts, bad_hands, missing fingers, extra digit, bad_anatomy, bad_proportions, bad_feet, watermark, username, artist name, signature, error, text, lower, fewer digits, extra digit, (worst quality, low quality:1.4), monochrome, blurry, missing fingers, extra digit, fewer digits, extra body parts, bad anatomy, censored, collage, logo, border, child, loli, shota, ((deformation)), bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
-    "sampler_name": "Euler a",
-    "batch_size": 1,
-    "steps": 20,
-    "cfg_scale": 9,
-    "width": 525,
-    "height": 512,
-    "override_settings": {
-        "sd_model_checkpoint": "anything-v3-full.safetensors",
-        "sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
-    },
-    "override_settings_restore_afterwards": true,
-    "sampler_index": "Euler a",
-    "script_args": [],
-    "send_images": true,
-    "save_images": true,
-    "alwayson_scripts": {
-        "ControlNet": {
-            "args": [{
-                    "control_mode": "Balanced",
-                    "enabled": true,
-                    "guidance_end": 1,
-                    "guidance_start": 0,
-                    "input_image": "",
-                    "input_mode": "simple",
-                    "is_ui": true,
-                    "loopback": false,
-                    "low_vram": false,
-                    "model": "control_v11p_sd15_lineart [43d4be0d]",
-                    "module": "lineart_standard (from white bg & black line)",
-                    "output_dir": "",
-                    "pixel_perfect": true,
-                    "processor_res": 512,
-                    "resize_mode": "Crop and Resize",
-                    "threshold_a": -1,
-                    "threshold_b": -1,
-                    "weight": 1.5
-                }
-
-            ]
-        }
-    }
+              "prompt": "(((best quality, high quality, highres))), boy, children, little boy, handsome, young, celebrity, angular face, simple background, white background",
+              "negative_prompt": "nsfw, poorly_drawn, blurry, cropped, worst quality, normal quality, low quality, jpeg artifacts, bad_hands, missing fingers, extra digit, bad_anatomy, bad_proportions, bad_feet, watermark, username, artist name, signature, error, text, lower, fewer digits, extra digit, (worst quality, low quality:1.4), monochrome, blurry, missing fingers, extra digit, fewer digits, extra body parts, bad anatomy, censored, collage, logo, border, child, loli, shota, ((deformation)), bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
+              "sampler_name": "Euler a",
+              "batch_size": 2,
+              "steps": 20,
+              "cfg_scale": 9,
+              "width": 512,
+              "height": 512,
+			  "override_settings": {
+				"sd_model_checkpoint": "anything-v3-full.safetensors",
+                "sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"				
+              },
+              "override_settings_restore_afterwards": true,
+              "sampler_index": "Euler a",
+              "script_args": [],
+              "send_images": true,
+              "save_images": true,
+              "alwayson_scripts": {
+                  "ControlNet":{
+                        "args":[
+                                {
+                                      "control_mode":"Balanced",  
+                                      "enabled":true,
+                                      "guidance_end":1,
+                                      "guidance_start":0,
+                                      "input_image": "",
+                                      "input_mode":"simple",
+                                      "is_ui":true,
+                                      "loopback":false,
+                                      "low_vram":false,
+                                      "model":"control_v11p_sd15_lineart [43d4be0d]",
+                                      "module":"lineart_standard (from white bg & black line)",
+                                      "output_dir":"",
+                                      "pixel_perfect":true,
+                                      "processor_res":512,
+                                      "resize_mode":"Crop and Resize",
+                                      "threshold_a":-1,
+                                      "threshold_b":-1,
+                                      "weight":1.5
+                                }
+                            
+                        ]
+                    }
+              }
 }

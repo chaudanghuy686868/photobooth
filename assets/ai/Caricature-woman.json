@@ -1,45 +1,46 @@
 {
-    "prompt": "<lora:Caricature_by_vizsumit:0.8> caricature of a woman, stinky, sticky, nasty, disgusting",
-    "negative_prompt": "(worst quality, low quality:1.4), lowres, bad anatomy, bad hands, ((text)), (watermark), error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, ((username)), blurry, (extra limbs), (three hands:1.6), (three legs:1.2),(more than two hands:1.4), (more than two legs,:1.2), label, watermark, bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3, nsfw, poorly_drawn, blurry, cropped, worst quality, normal quality, low quality, jpeg artifacts, bad_hands, missing fingers, extra digit, bad_anatomy, bad_proportions, bad_feet, watermark, username, artist name, signature, error, text, lower, fewer digits, extra digit, monochrome, blurry, missing fingers, extra digit, fewer digits, extra body parts, bad anatomy, censored, collage, logo, border, child, loli, shota, ((deformation)), bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
-    "sampler_name": "Euler a",
-    "batch_size": 1,
-    "steps": 23,
-    "cfg_scale": 9,
-    "width": 525,
-    "height": 512,
-    "override_settings": {
-        "sd_model_checkpoint": "dreamshaper_8.safetensors",
-        "sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
-    },
-    "override_settings_restore_afterwards": true,
-    "sampler_index": "Euler a",
-    "script_args": [],
-    "send_images": true,
-    "save_images": true,
-    "alwayson_scripts": {
-        "ControlNet": {
-            "args": [{
-                    "control_mode": "Balanced",
-                    "enabled": true,
-                    "guidance_end": 1,
-                    "guidance_start": 0,
-                    "input_image": "",
-                    "input_mode": "simple",
-                    "is_ui": true,
-                    "loopback": false,
-                    "low_vram": false,
-                    "model": "control_v11p_sd15_lineart [43d4be0d]",
-                    "module": "lineart_standard (from white bg & black line)",
-                    "output_dir": "",
-                    "pixel_perfect": true,
-                    "processor_res": 512,
-                    "resize_mode": "Crop and Resize",
-                    "threshold_a": -1,
-                    "threshold_b": -1,
-                    "weight": 0.8
-                }
-
-            ]
-        }
-    }
+              "prompt": "<lora:Caricature_by_vizsumit:0.8> caricature of a girl, children, little girl, stinky, sticky, nasty, disgusting",
+              "negative_prompt": "(worst quality, low quality:1.4), lowres, bad anatomy, bad hands, ((text)), (watermark), error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, ((username)), blurry, (extra limbs), (three hands:1.6), (three legs:1.2),(more than two hands:1.4), (more than two legs,:1.2), label, watermark, bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3, nsfw, poorly_drawn, blurry, cropped, worst quality, normal quality, low quality, jpeg artifacts, bad_hands, missing fingers, extra digit, bad_anatomy, bad_proportions, bad_feet, watermark, username, artist name, signature, error, text, lower, fewer digits, extra digit, monochrome, blurry, missing fingers, extra digit, fewer digits, extra body parts, bad anatomy, censored, collage, logo, border, child, loli, shota, ((deformation)), bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
+              "sampler_name": "Euler a",
+              "batch_size": 1,
+              "steps": 23,
+              "cfg_scale": 9,
+              "width": 640,
+              "height": 628,
+              "override_settings": {
+                "sd_model_checkpoint": "dreamshaper_8.safetensors",
+				"sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"				
+              },
+              "override_settings_restore_afterwards": true,
+              "sampler_index": "Euler a",
+              "script_args": [],
+              "send_images": true,
+              "save_images": true,
+              "alwayson_scripts": {
+                  "ControlNet":{
+                        "args":[
+                                {
+                                      "control_mode":"Balanced",  
+                                      "enabled":true,
+                                      "guidance_end":1,
+                                      "guidance_start":0,
+                                      "input_image": "",
+                                      "input_mode":"simple",
+                                      "is_ui":true,
+                                      "loopback":false,
+                                      "low_vram":false,
+                                      "model":"control_v11p_sd15_lineart [43d4be0d]",
+                                      "module":"lineart_standard (from white bg & black line)",
+                                      "output_dir":"",
+                                      "pixel_perfect":true,
+                                      "processor_res":512,
+                                      "resize_mode":"Crop and Resize",
+                                      "threshold_a":-1,
+                                      "threshold_b":-1,
+                                      "weight":0.8
+                                }
+                            
+                        ]
+                    }
+              }
 }

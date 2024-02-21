@@ -38,6 +38,7 @@ class _Screen6State extends State<Screen6> {
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   Random _rnd = Random();
   String imgLoad = '';
+  String imgProgressLoad = '';
 
   late bool _loading;
   late double _progressValue;
@@ -47,6 +48,7 @@ class _Screen6State extends State<Screen6> {
     super.initState();
     _loading = false;
     _progressValue = 0.0;
+    imgProgressLoad = 'assets/images/load0.png';
 
     _loading = !_loading;
     _updateProgress();
@@ -57,6 +59,14 @@ class _Screen6State extends State<Screen6> {
 
     // API call
     fetchDataAndSaveImage(widget.effectName);
+  }
+
+  @override
+  void dispose() {
+    //imgProgressLoad = 'assets/images/load0.png';;
+    // ignore: avoid_print
+    print('Dispose used');
+    super.dispose();
   }
 
   String getRandomString(int length) {
@@ -182,10 +192,14 @@ class _Screen6State extends State<Screen6> {
             )
           ],
         ),
+
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 150,
+              ),
               SingleChildScrollView(
                 child: SafeArea(
                     child: Column(
@@ -193,7 +207,7 @@ class _Screen6State extends State<Screen6> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 100,
+                      height: 150,
                     ),
                     Container(
                       width: 1000,
@@ -244,12 +258,15 @@ class _Screen6State extends State<Screen6> {
                                     ),
                                   ),
                                 ),
-                                //Text('${(_progressValue * 100).round()}%',
+                                // Text('${testStr}%'),
                                 //외계인을 납치해 오는중...
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 Image.asset(
-                                  'assets/images/loading_text.png',
+                                  '${imgProgressLoad}',
                                   width: 1000,
-                                  height: 30,
+                                  height: 70,
                                 ),
                               ],
                             )
@@ -272,6 +289,20 @@ class _Screen6State extends State<Screen6> {
       setState(() {
         _progressValue += 0.001;
         // we "finish" downloading here
+        if(_progressValue == 0.005) {
+          imgProgressLoad = 'assets/images/load1.png';
+
+        }
+
+        if(_progressValue >= 0.009) {
+          imgProgressLoad = 'assets/images/load2.png';
+
+        }
+        if(_progressValue >= 0.014) {
+          imgProgressLoad = 'assets/images/load3.png';
+
+        }
+
         if (_progressValue.toStringAsFixed(1) == '2.0' || doneAi) {
           //_loading = false;
           t.cancel();
@@ -282,6 +313,7 @@ class _Screen6State extends State<Screen6> {
             MaterialPageRoute(
                 builder: (context) => Screen7(
                       imgUrl: resultImageUrl,
+                      //imgUrl: '',
                       imgUrlTarget: widget.imgUrl,
                     )),
           );

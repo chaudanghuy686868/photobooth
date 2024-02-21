@@ -1,46 +1,47 @@
 {
-    "prompt": "Front view one head (a man of unknown race with wet hair strict office hairstyle and charming makeup:1.1) art, symmetrical artistic sharp art, (dan mumford style:1.1), hdr, realism, strong lines, dark fantasy atmosphere, lovecraft style, (JimJorCrafLogo art style:1.3), demonic teeth, too many teeth",
-    "negative_prompt": "nsfw, (ugly face:1.3), (blurred face:1.3), disfigured, lowres, poorly drawn, sloppy, over exposed, burnt image, sloppy, broken, fuzzy, aliasing, cheap, oldschool, poor quality, pixelated, sleepy, closed-eyes, (two head:1.3), (matte color:1.1),  bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
-    "seed": -1,
-    "sampler_name": "Euler a",
-    "batch_size": 1,
-    "steps": 20,
-    "cfg_scale": 9,
-    "width": 525,
-    "height": 512,
-    "override_settings": {
-        "sd_model_checkpoint": "jimJORCRAF_version10.safetensors",
-        "sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
-    },
-    "override_settings_restore_afterwards": true,
-    "sampler_index": "Euler a",
-    "script_args": [],
-    "send_images": true,
-    "save_images": true,
-    "alwayson_scripts": {
-        "ControlNet": {
-            "args": [{
-                    "control_mode": "Balanced",
-                    "enabled": true,
-                    "guidance_end": 1,
-                    "guidance_start": 0,
-                    "input_image": "",
-                    "input_mode": "simple",
-                    "is_ui": true,
-                    "loopback": false,
-                    "low_vram": false,
-                    "model": "control_v11p_sd15_lineart [43d4be0d]",
-                    "module": "lineart_standard (from white bg & black line)",
-                    "output_dir": "",
-                    "pixel_perfect": true,
-                    "processor_res": 512,
-                    "resize_mode": "Crop and Resize",
-                    "threshold_a": -1,
-                    "threshold_b": -1,
-                    "weight": 0.6
-                }
-
-            ]
-        }
-    }
+              "prompt": "boy, little boy, children, little children, front view one head (a boy of unknown race with wet hair strict office hairstyle and charming makeup:1.1) art, symmetrical artistic sharp art, (dan mumford style:1.1), hdr, realism, strong lines, fantasy atmosphere, lovecraft style, (JimJorCrafLogo art style:1.3)",
+              "negative_prompt": "nsfw, (ugly face:1.3), (blurred face:1.3), disfigured, lowres, poorly drawn, sloppy, over exposed, burnt image, sloppy, broken, fuzzy, aliasing, cheap, oldschool, poor quality, pixelated, sleepy, closed-eyes, (two head:1.3), (matte color:1.1),  bad-hands-5, BadDream, badhandv4, verybadimagenegative_v1.3",
+              "seed": -1,
+              "sampler_name": "Euler a",
+              "batch_size": 1,
+              "steps": 20,
+              "cfg_scale": 9,
+              "width": 640,
+              "height": 628,
+              "override_settings": {
+                "sd_model_checkpoint": "jimJORCRAF_version10.safetensors",
+				"sd_vae": "vae-ft-mse-840000-ema-pruned.ckpt"
+              },
+              "override_settings_restore_afterwards": true,
+              "sampler_index": "Euler a",
+              "script_args": [],
+              "send_images": true,
+              "save_images": true,
+              "alwayson_scripts": {
+                  "ControlNet":{
+                        "args":[
+                                {
+                                      "control_mode":"Balanced",  
+                                      "enabled":true,
+                                      "guidance_end":1,
+                                      "guidance_start":0,
+                                      "input_image": "",
+                                      "input_mode":"simple",
+                                      "is_ui":true,
+                                      "loopback":false,
+                                      "low_vram":false,
+                                      "model":"control_v11p_sd15_lineart [43d4be0d]",
+                                      "module":"lineart_standard (from white bg & black line)",
+                                      "output_dir":"",
+                                      "pixel_perfect":true,
+                                      "processor_res":512,
+                                      "resize_mode":"Crop and Resize",
+                                      "threshold_a":-1,
+                                      "threshold_b":-1,
+                                      "weight":0.6
+                                }
+                            
+                        ]
+                    }
+              }
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
@@ -6,6 +7,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:photobooth_section1/models/image_model.dart';
 import 'package:photobooth_section1/palatter.dart';
@@ -16,6 +18,7 @@ import 'dart:math';
 import 'package:path/path.dart' as path;
 import 'package:image/image.dart' as img;
 import 'package:stroke_text/stroke_text.dart';
+import 'package:image_cropper/image_cropper.dart';
 
 const _videoConstraints = VideoConstraints(
   facingMode: FacingMode(
@@ -78,7 +81,7 @@ class _Screen3State extends State<Screen3> {
   }
 
   void _delayTimer() {
-    const threeSec = const Duration(seconds: 3);
+    const threeSec = const Duration(seconds: 2);
     _timer = Timer.periodic(threeSec, (Timer timer1) {
       if (_cntdown == 0) {
         timer1.cancel();
@@ -137,6 +140,32 @@ class _Screen3State extends State<Screen3> {
 
       // Capture photo
       final picture = await _controller.takePicture();
+
+      // Crop photo
+      final _croppedFile = await ImageCropper().cropImage(
+        sourcePath: picture.data,
+        aspectRatioPresets: [
+          CropAspectRatioPreset.square,
+          CropAspectRatioPreset.ratio3x2,
+          CropAspectRatioPreset.original,
+          CropAspectRatioPreset.ratio4x3,
+          CropAspectRatioPreset.ratio16x9
+        ],
+        uiSettings: [
+          AndroidUiSettings(
+              toolbarTitle: 'Cropper',
+              toolbarColor: Colors.deepOrange,
+              toolbarWidgetColor: Colors.white,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          IOSUiSettings(
+            title: 'Cropper',
+          ),
+          WebUiSettings(
+            context: context,
+          ),
+        ],
+      );
 
       int userPhotoId = savedImages.length + 1;
       final ImageModel savedImage = ImageModel(
@@ -208,94 +237,228 @@ class _Screen3State extends State<Screen3> {
               image: AssetImage('assets/images/bg_ver.png'),
               fit: BoxFit.cover,
             ),
-            Container(
-              //mainAxisAlignment: MainAxisAlignment.center,
-              height: 300, //300
-              //color: Colors.white70,
-              margin: const EdgeInsets.only(
-                left: 0.0, //10
-                right: 10.0, //0
-                top: 10.0,
-                bottom: 1050,
-              ),
-              child: Row(
+
+            Center(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/template/text-screen3-a.png',
-                    width: 972, //1000
-                    height: 324, //3840
-                  )
-                ],
-              ),
-            ),
-            Container(
-              //color: Colors.deepOrangeAccent,
-              margin: const EdgeInsets.only(
-                left: 10.0,
-                right: 0.0,
-                top: 70.0,
-                bottom: 100,
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 90),
-                    // Rounded Image
-                    Column(
+                  SizedBox(height: 20),
+                  Container(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 5,
-                                ),
-                                borderRadius: BorderRadius.circular(20.0),
+                        Image.asset(
+                          'assets/template/up-arrow-screen3.png',
+                          width: 100, //1000
+                          height: 80,
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/template/up-text-screen3.png',
+                          height: 40,
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    height: 200, //300
+                    //color: Colors.white70,
+                    margin: const EdgeInsets.only(
+                      left: 10.0, //10
+                      right: 10.0, //0
+                      top: 10.0,
+                      bottom: 10,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/template/text-screen3.png',
+                          width: 972, //1000
+                          height: 320,
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    //color: Colors.deepOrangeAccent,
+                    margin: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 0.0,
+                      top: 10.0,
+                      bottom: 100,
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 90),
+                          // Rounded Image
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        color: Colors.white,
+                                        width: 5,
+                                      ),
+                                      borderRadius: BorderRadius.circular(20.0),
+                                    ),
+                                    alignment: Alignment.center,
+                                    margin: EdgeInsets.only(left: 0, top: 10),
+                                    height: 635, //550
+                                    width: 840, //690
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                      child: AspectRatio(
+                                          aspectRatio: 10.0 / 7.5, //5/4
+                                          // aspectRatio: _previewSize!.width /_previewSize!.height,
+                                          child: Stack(
+                                            children: <Widget>[
+                                              Camera(
+                                                controller: _controller,
+                                                placeholder: (_) =>
+                                                    const SizedBox(),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    left: 320, top: 120),
+                                                width: 200.0,
+                                                height: 180.0,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                    color: Colors.red,
+                                                    width: 3.0,
+                                                  ),
+                                                  color: Colors
+                                                      .transparent, // Transparent background
+                                                ),
+                                              ),
+                                            ],
+                                          )),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              alignment: Alignment.center,
-                              margin: EdgeInsets.only(left: 0, top: 320),
-                              height: 635, //550
-                              width: 840, //690
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                child: AspectRatio(
-                                    aspectRatio: 10.0 / 7.5, //5/4
-                                    // aspectRatio: _previewSize!.width /_previewSize!.height,
-                                    child: Camera(
-                                      controller: _controller,
-                                      placeholder: (_) => const SizedBox(),
-                                    )),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(left: 8, top: 20),
-                              alignment: Alignment.bottomCenter,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  AudioPlayer().play(
-                                      AssetSource('audio/take_picture.mp3'));
-                                  // Trigger start countdown
-                                  startTimer();
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 20),
-                                  child: (startCount || savedImages.isNotEmpty)
-                                      ? StrokeText(
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  (startCount || savedImages.isNotEmpty)
+                                      ? Container(
+                                          margin:
+                                              EdgeInsets.only(left: 8, top: 20),
+                                          alignment: Alignment.bottomCenter,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              AudioPlayer().play(AssetSource(
+                                                  'audio/take_picture.mp3'));
+                                              // Trigger start countdown
+                                              startTimer();
+                                            },
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 30,
+                                                      vertical: 30),
+                                              child: StrokeText(
+                                                text: okToTimer
+                                                    ? '$_countdown'
+                                                    : "촬영",
+                                                textStyle: TextStyle(
+                                                  fontSize: 80,
+                                                  color: Colors.black,
+                                                  fontFamily: 'GulyFont',
+                                                ),
+                                                strokeColor: Colors.white,
+                                                strokeWidth: 1,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.teal,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                side: BorderSide(
+                                                  width: 5,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              minimumSize: Size(280, 160),
+                                            ),
+                                          ),
+                                        )
+                                      : Container(
+                                          margin:
+                                              EdgeInsets.only(left: 8, top: 20),
+                                          alignment: Alignment.bottomCenter,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              AudioPlayer().play(AssetSource(
+                                                  'audio/take_picture.mp3'));
+                                              // Trigger start countdown
+                                              startTimer();
+                                            },
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 30,
+                                                      vertical: 30),
+                                              child: StrokeText(
+                                                text: "촬영",
+                                                textStyle: TextStyle(
+                                                  fontSize: 80,
+                                                  color: Colors.black,
+                                                  fontFamily: 'GulyFont',
+                                                ),
+                                                strokeColor: Colors.white,
+                                                strokeWidth: 5,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.teal,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                side: BorderSide(
+                                                  width: 5,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              minimumSize: Size(280, 160),
+                                            ),
+                                          ),
+                                        ),
+                                  /*
+                                  Container(
+                                    margin: EdgeInsets.only(left: 8, top: 20),
+                                    alignment: Alignment.bottomCenter,
+                                      child: ElevatedButton(
+                                      onPressed: () {
+                                        AudioPlayer().play(
+                                            AssetSource('audio/take_picture.mp3'));
+                                        // Trigger start countdown
+                                        startTimer();
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 30, vertical: 30),
+                                        child: (startCount || savedImages.isNotEmpty)
+                                            ? StrokeText(
                                           text:
-                                              okToTimer ? '$_countdown' : "촬영",
+                                          okToTimer ? '$_countdown' : "촬영",
                                           textStyle: TextStyle(
                                             fontSize: 80,
                                             color: Colors.black,
@@ -304,7 +467,7 @@ class _Screen3State extends State<Screen3> {
                                           strokeColor: Colors.white,
                                           strokeWidth: 5,
                                         )
-                                      : StrokeText(
+                                            : StrokeText(
                                           text: "촬영",
                                           textStyle: TextStyle(
                                             fontSize: 80,
@@ -314,36 +477,51 @@ class _Screen3State extends State<Screen3> {
                                           strokeColor: Colors.white,
                                           strokeWidth: 5,
                                         ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.teal,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    side: BorderSide(
-                                      width: 5,
-                                      color: Colors.white,
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.teal,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(20),
+                                          side: BorderSide(
+                                            width: 5,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  */
+                                ],
                               ),
+                            ],
+                          ),
+                          SizedBox(height: 20),
+                          Container(
+                            margin: EdgeInsets.only(left: 30, top: 20),
+                            height: 220,
+                            width: 900,
+                            //color: Colors.green[200],
+                            alignment: Alignment.center,
+                            child: ThumbnailGridView(
+                              images: savedImages,
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
-                    Container(
-                      margin: EdgeInsets.only(left: 30, top: 20),
-                      height: 220,
-                      width: 900,
-                      //color: Colors.green[200],
-                      alignment: Alignment.center,
-                      child: ThumbnailGridView(
-                        images: savedImages,
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/template/down-text-screen3.png',
+                          height: 40,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

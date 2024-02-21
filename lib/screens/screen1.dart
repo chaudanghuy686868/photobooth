@@ -44,7 +44,29 @@ class Screen1 extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-
+                  GestureDetector(
+                    onTap: () {
+                      AudioPlayer().play(AssetSource('audio/button.mp3'));
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Screen2()),
+                      );
+                    },
+                    child: Container(
+                      height: 170,
+                      width: 270,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(8.0),
+                        image: DecorationImage(
+                          image: AssetImage("assets/template/btn-screen1.png"),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                  /*
                   ElevatedButton(
                     onPressed: () {
                       AudioPlayer().play(AssetSource('audio/button.mp3'));
@@ -61,10 +83,10 @@ class Screen1 extends StatelessWidget {
                         textStyle: TextStyle(
                           fontSize: 120,
                           color: Colors.red,
-                          fontFamily: 'GulyFont',
+                          fontFamily: 'Gowun',
                         ),
                         strokeColor: Colors.black,
-                        strokeWidth: 5,
+                        strokeWidth: 10,
                       ),
                     ),
                     style: ElevatedButton.styleFrom(
@@ -78,6 +100,7 @@ class Screen1 extends StatelessWidget {
                       ),
                     ),
                   ),
+                  */
                 ],
               ),
             )

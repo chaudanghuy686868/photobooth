@@ -20,75 +20,80 @@ class Screen5 extends StatefulWidget {
 
 class _Screen5State extends State<Screen5> {
   List<AIModel> models = [
+    /*
     AIModel(
       id: 1,
       img: 'assets/images/effective/Anime/Anime_man.gif',
-      name: 'Anime',
+      name: '일본 만화 영화',
       effect: 'anime-man',
     ),
     AIModel(
       id: 2,
       img: 'assets/images/effective/Anime/Anime-woman.gif',
-      name: 'Anime',
+      name: '일본 만화 영화',
       effect: 'anime-woman',
     ),
+
+     */
     AIModel(
       id: 3,
       img: 'assets/images/effective/3dcartoon/3dcartoon-man.gif',
-      name: '3Dcartoon',
+      name: '3D만화',
       effect: '3dcartoon-man',
     ),
     AIModel(
       id: 4,
       img: 'assets/images/effective/3dcartoon/3dcartoon-woman.gif',
-      name: '3Dcartoon',
+      name: '3D만화',
       effect: '3dcartoon-woman',
     ),
     AIModel(
       id: 5,
       img: 'assets/images/effective/AdorableGhost/AdorableGhost-man.gif',
-      name: 'AdorableGhost',
+      name: '사랑스러운유령',
       effect: 'AdorableGhost-man',
     ),
     AIModel(
         id: 6,
         img: 'assets/images/effective/AdorableGhost/AdorableGhost-woman.gif',
-        name: 'AdorableGhost',
+        name: '사랑스러운유령',
         effect: 'AdorableGhost-Woman'),
+    /*
     AIModel(
       id: 7,
       img: 'assets/images/effective/Caricature/Caricature-man.gif',
-      name: 'Caricature',
+      name: '풍자 만화',
       effect: 'Caricature-man',
     ),
     AIModel(
       id: 8,
       img: 'assets/images/effective/Caricature/Caricature-woman.gif',
-      name: 'Caricature',
+      name: '풍자 만화',
       effect: 'Caricature-woman',
     ),
+  */
     AIModel(
       id: 9,
       img: 'assets/images/effective/Cartoon/Cartoon-man.gif',
-      name: 'Cartoon',
+      name: '만화',
       effect: 'Cartoon-man',
     ),
     AIModel(
       id: 10,
       img: 'assets/images/effective/Cartoon/Cartoon-woman.gif',
-      name: 'Cartoon',
+      name: '만화',
       effect: 'Cartoon-woman',
     ),
     AIModel(
       id: 11,
       img: 'assets/images/effective/Comic/Comic-man.gif',
-      name: 'Comic',
+      name: '만화',
       effect: 'comic-man',
     ),
     AIModel(
       id: 12,
       img: 'assets/images/effective/Comic/Comic-woman.gif',
-      name: 'Comic',
+      name: '만화',
       effect: 'comic-woman',
     ),
     /*
@@ -128,41 +133,42 @@ class _Screen5State extends State<Screen5> {
       name: 'Necromancer',
       effect: 'necromancer-woman',
     ),
-  */
+
     AIModel(
       id: 19,
       img: 'assets/images/effective/Nightcrawler/Nightcrawler-man.gif',
-      name: 'Nightcrawler',
+      name: '밤 크롤러',
       effect: 'Nightcrawler-man',
     ),
     AIModel(
       id: 20,
       img: 'assets/images/effective/Nightcrawler/Nightcrawler-woman.gif',
-      name: 'Nightcrawler',
+      name: '밤 크롤러',
       effect: 'Nightcrawler-woman',
     ),
+    */
     AIModel(
       id: 21,
       img: 'assets/images/effective/Pixar/Pixar-man.gif',
-      name: 'Pixar',
+      name: '픽사',
       effect: 'pixar-man',
     ),
     AIModel(
       id: 22,
       img: 'assets/images/effective/Pixar/Pixar-woman.gif',
-      name: 'Pixar',
+      name: '픽사',
       effect: 'pixar-woman',
     ),
     AIModel(
       id: 23,
       img: 'assets/images/effective/Romantic/Romantic-man.gif',
-      name: 'Romantic',
+      name: '로맨틱',
       effect: 'romantic-man',
     ),
     AIModel(
       id: 24,
       img: 'assets/images/effective/Romantic/Romantic-woman.gif',
-      name: 'Romantic',
+      name: '로맨틱',
       effect: 'romantic-woman',
     ),
     /*

@@ -72,7 +72,7 @@ class _Screen2State extends State<Screen2> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/template/text-screen2.png',
+                  'assets/template/text_screen2_new.png',
                 )
               ],
             ),
@@ -158,9 +158,14 @@ class _Screen2State extends State<Screen2> {
                                     .play(AssetSource('audio/button.mp3'));
                                 Navigator.push(
                                   context,
+                                  // MaterialPageRoute(
+                                  //     builder: (context) => Screen7(
+                                  //         imgUrl: 'assets/template/screen1.png',
+                                  //         imgUrlTarget:
+                                  //             'assets/template/screen2.gif')),
+                                  MaterialPageRoute(builder: (context) => Screen3()),
                                   //MaterialPageRoute(builder: (context) => Screen5(image: '',)),
-                                  MaterialPageRoute(
-                                      builder: (context) => Screen3()),
+                                  //MaterialPageRoute(builder: (context) => Screen6(imgUrl: 'assets/images/test1.png', effectName: '3dcartoon-man',)),
                                 );
                               },
                               elevation: 2.0,
@@ -292,6 +297,10 @@ class _Screen2State extends State<Screen2> {
               context,
               MaterialPageRoute(builder: (context) => Screen3()),
               //MaterialPageRoute( builder: (context) => const TakePictureScreen()),
+              // MaterialPageRoute(
+              //     builder: (context) => Screen7(
+              //         imgUrl: 'assets/images/test1.png',
+              //         imgUrlTarget: 'assets/template/screen2.gif')),
             );
           },
         ),
