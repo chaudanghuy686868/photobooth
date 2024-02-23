@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
@@ -283,8 +285,10 @@ class _Screen5State extends State<Screen5> {
       );
     }
 
-    Image imageSnap = Image.network(
-      widget.image,
+    Uint8List imageShowBytes = base64Decode(widget.image);
+
+    Image imageSnap = Image.memory(
+      imageShowBytes,
       width: 350.0,
       height: 380.0,
       fit: BoxFit.cover,

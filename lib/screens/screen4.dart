@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:photobooth_section1/models/image_model.dart';
 import 'package:photobooth_section1/screens/screen5.dart';
 // import 'package:flutter/painting.dart';
@@ -10,6 +14,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart' as path;
 import 'package:stroke_text/stroke_text.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
+import 'dart:html' as html;
+import 'package:http/http.dart' as http;
+import 'package:image/image.dart' as img;
 
 class Screen4 extends StatefulWidget {
   List<ImageModel> images = [];
@@ -27,6 +35,8 @@ class _Screen4State extends State<Screen4> {
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   Random _rnd = Random();
   CroppedFile? _croppedFile;
+
+  String croppedResult = "";
 
   @override
   void initState() {
@@ -54,55 +64,36 @@ class _Screen4State extends State<Screen4> {
       _showMyDialog();
       return;
     } else {
-      _cropImage(chooseImgUrl);
-      if (_croppedFile == null) {
-        return;
+      cropImage(chooseImgUrl);
+      if (croppedResult != "") {
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Screen5(
+                      image: croppedResult,
+                    )));
       }
-
-      Navigator.pop(context);
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Screen5(
-                    image: _croppedFile!.path,
-                  )));
     }
   }
 
-  Future<void> _cropImage(_pickedFile) async {
-    if (_pickedFile != null) {
-      final croppedFile = await ImageCropper().cropImage(
-        sourcePath: _pickedFile,
-        compressFormat: ImageCompressFormat.jpg,
-        compressQuality: 100,
-        uiSettings: [
-          AndroidUiSettings(
-              toolbarTitle: 'Cropper',
-              toolbarColor: Colors.deepOrange,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
-          IOSUiSettings(
-            title: 'Cropper',
-          ),
-          WebUiSettings(
-            context: context,
-            presentStyle: CropperPresentStyle.dialog,
-            boundary: const CroppieBoundary(
-              width: 520,
-              height: 520,
-            ),
-            viewPort:
-                const CroppieViewPort(width: 200, height: 200, type: 'square'),
-            enableExif: true,
-            enableZoom: true,
-            showZoomer: true,
-          ),
-        ],
-      );
-      if (croppedFile != null) {
+  Future<void> cropImage(String chooseImgUrl) async {
+    const apiURL = 'http://localhost:8012/api/detect-face/';
+
+    Uint8List fileBytes = await http.readBytes(Uri.parse(chooseImgUrl));
+
+    String base64Image = base64.encode(fileBytes);
+
+    final response = await http.post(Uri.parse(apiURL),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'image': base64Image}));
+
+    if (response.statusCode == 200) {
+      final String croppedImage = json.decode(response.body)['cropped_images'];
+
+      if (croppedImage != "") {
         setState(() {
-          _croppedFile = croppedFile;
+          croppedResult = croppedImage;
         });
 
         Navigator.pop(context);
@@ -110,9 +101,11 @@ class _Screen4State extends State<Screen4> {
             context,
             MaterialPageRoute(
                 builder: (context) => Screen5(
-                      image: _croppedFile!.path,
+                      image: croppedImage,
                     )));
       }
+    } else {
+      throw Exception('Failed to crop images');
     }
   }
 

@@ -127,9 +127,10 @@ class _Screen6State extends State<Screen6> {
       //String usrImgUrl = widget.imgUrl;
       //File imageFile = File(usrImgUrl);
       // DEBUG
-      final Uint8List bytes = await http.readBytes(Uri.parse(widget.imgUrl));
-      if (bytes.isNotEmpty) {
-        final String imgBase64 = base64.encode(bytes);
+      final String imgBase64 = widget.imgUrl;
+      // final Uint8List bytes = await http.readBytes(Uri.parse(widget.imgUrl));
+      if (imgBase64.isNotEmpty) {
+        // final String imgBase64 = base64.encode(bytes);
         if (imgBase64.isNotEmpty) {
           String jsonString = await rootBundle
               .loadString("assets/ai/${widget.effectName}.json");
@@ -192,7 +193,6 @@ class _Screen6State extends State<Screen6> {
             )
           ],
         ),
-
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -289,18 +289,15 @@ class _Screen6State extends State<Screen6> {
       setState(() {
         _progressValue += 0.001;
         // we "finish" downloading here
-        if(_progressValue == 0.005) {
+        if (_progressValue == 0.005) {
           imgProgressLoad = 'assets/images/load1.png';
-
         }
 
-        if(_progressValue >= 0.009) {
+        if (_progressValue >= 0.009) {
           imgProgressLoad = 'assets/images/load2.png';
-
         }
-        if(_progressValue >= 0.014) {
+        if (_progressValue >= 0.014) {
           imgProgressLoad = 'assets/images/load3.png';
-
         }
 
         if (_progressValue.toStringAsFixed(1) == '2.0' || doneAi) {

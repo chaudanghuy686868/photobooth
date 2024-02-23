@@ -139,9 +139,10 @@ class _Screen7State extends State<Screen7> {
     // Image imageSnap = Image.network(
     //   widget.imgUrl,
     // );
+    Uint8List imageShowBytes = base64Decode(widget.imgUrlTarget);
 
-    Image imageSnapTarget = Image.network(
-      widget.imgUrlTarget,
+    Image imageSnapTarget = Image.memory(
+      imageShowBytes,
       width: 490.0,
       height: 520.0,
       fit: BoxFit.cover,
@@ -407,7 +408,6 @@ class _Screen7State extends State<Screen7> {
               ),
             ),
           ),
-
         ),
       ),
     );
